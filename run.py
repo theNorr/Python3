@@ -19,7 +19,7 @@ flask triggers the index function underneath and returns the "Hello, World"
 """
 
 @app.route('/') #route decorator to tell Flask what URL should trigger the following function.
-def hello(): #the function.
+def index(): #the function which is matched in the menu list items in our html-files.
     return render_template("index.html") #returns a template that's located inside the folder templates.
 
 @app.route('/about')
@@ -30,7 +30,7 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template("contact.html")
-    
+
 if __name__ == '__main__':  #compare __name__ to __main__. main is the default module in python.
     app.run(host=os.environ.get('IP'),  #run the app with argument: host is going to be the IP which is retrived by the os-function environ.get, from the enviroment in which we are running our app.
             port=int(os.environ.get('PORT')), #This does the same as above but it converts it to an int.

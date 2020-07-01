@@ -8,8 +8,9 @@
  <body>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>  <!-- Here we're using template logic, i.e. using the template jinja language. dubble curly braces tells flask that whatever is inside is code to be rendered. -->
+            <li><a href="{{ url_for('about') }}">About</a></li> <!-- url_for() is a function which locates the view 'index'(it's important that the view matches the name of the route-function inside the run.py-file) and injects its URL. -->
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
         </ul>
     </nav>
      
