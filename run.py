@@ -1,5 +1,5 @@
 import os #imports os from the standard python library.
-from flask import Flask #Import flask-class from PythonPackage.
+from flask import Flask, render_template #Import flask-class from PythonPackage & renders template from flask.
 
 app = Flask(__name__) #creates an instance of flask and stores it in a variable app.
 
@@ -21,7 +21,7 @@ flask triggers the index function underneath and returns the "Hello, World"
 @app.route('/') #route decorator to tell Flask what URL should trigger the function.
 
 def hello(): #the function.
-    return "Hello World"
+    return render_template("index.html") #returns a template that's located inside the folder templates.
 
 if __name__ == '__main__':  #compare __name__ to __main__. main is the default module in python.
     app.run(host=os.environ.get('IP'),  #run the app with argument: host is going to be the IP which is retrived by the os-function environ.get, from the enviroment in which we are running our app.
