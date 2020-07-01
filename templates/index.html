@@ -1,19 +1,4 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Hello Flask</title>
- </head>
- <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>  <!-- Here we're using template logic, i.e. using the template jinja language. dubble curly braces tells flask that whatever is inside is code to be rendered. -->
-            <li><a href="{{ url_for('about') }}">About</a></li> <!-- url_for() is a function which locates the view 'index'(it's important that the view matches the name of the route-function inside the run.py-file) and injects its URL. -->
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
-        </ul>
-    </nav>
-     
-    <h1>Home Page</h1>
- </body>
- </html>
+{% extends 'base.html' %} <!--Tells the browser to inherit the content from base.html into this file-->
+{% block content %} <!--the browser then looks for the block which we have called block content, and then injects the following code into it-->
+<h1>Home Page</h1>
+{% endblock %}
