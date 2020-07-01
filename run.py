@@ -18,8 +18,7 @@ when we try to browse to the root directory as indicated by the "/", then
 flask triggers the index function underneath and returns the "Hello, World"
 """
 
-@app.route('/') #route decorator to tell Flask what URL should trigger the function.
-
+@app.route('/') #route decorator to tell Flask what URL should trigger the following function.
 def hello(): #the function.
     return render_template("index.html") #returns a template that's located inside the folder templates.
 
