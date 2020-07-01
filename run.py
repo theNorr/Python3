@@ -1,4 +1,5 @@
 import os  # imports os from the standard python library.
+import json  # imports the json-library.
 from flask import Flask, render_template  # Import flask-class from PythonPackage & renders template from flask.
 
 app = Flask(__name__)  # creates an instance of flask and stores it in a variable app.
@@ -27,17 +28,20 @@ def index():  # the function which is matched in the menu list items in our html
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    data = []
+    with open("data/company.json", "r") as json_data:  # Opens the referensed file as json_data, and "r" for reading.
+        data = json.load(json_data)  # Sets my data variable to the JSON parsed data that we've sent through
+    return render_template("about.html", page_title="About", company=data)  # Then we pass that data into the return, called company.
 
 
 @app.route('/contact')
 def contact():
-    return render_template("contact.html")
+    return render_template("contact.html", page_title="Contact")
 
 
 @app.route('/careers')
 def careers():
-    return render_template("careers.html")
+    return render_template("careers.html", page_title="Careers")
 
 if __name__ == '__main__':   # compare   __name__   to   __main__  . main is the defaultmodule in python.
     app.run(host=os.environ.get('IP'),   # run the app with argument: host is going to be the IP which is retrived by the os-function environ.get, from the enviroment in which we are running our app.
