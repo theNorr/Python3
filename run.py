@@ -22,6 +22,15 @@ flask triggers the index function underneath and returns the "Hello, World"
 def hello(): #the function.
     return render_template("index.html") #returns a template that's located inside the folder templates.
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
+    
 if __name__ == '__main__':  #compare __name__ to __main__. main is the default module in python.
     app.run(host=os.environ.get('IP'),  #run the app with argument: host is going to be the IP which is retrived by the os-function environ.get, from the enviroment in which we are running our app.
             port=int(os.environ.get('PORT')), #This does the same as above but it converts it to an int.
