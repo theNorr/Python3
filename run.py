@@ -1,14 +1,20 @@
 import os  # imports os from the standard python library.
 import json  # imports the json-library.
-from flask import Flask, render_template  # Import flask-class from PythonPackage & renders template from flask.
+from flask import Flask, render_template, request, flash  # Import flask-class from PythonPackage & renders template from flask and also request library.
+
+"""
+to display a non-permanent message to the user, something that only stays until
+we refresh the page or go to a different one.
+"""
 
 app = Flask(__name__)  # creates an instance of flask and stores it in a variable app.
+app.secret_key = 'some_secret'
 
 """
 Since we're just using a single module, we can use __name__
 which is a built-in Python variable. Flask needs this so that it knows
 where to look for templates and static files.
-
+app.secret_key = A key needed by the flash message to sign the contact form message.
 """
 
 
@@ -47,8 +53,12 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-@app.route('/contact')
+@app.route('/contact', methods=["GET", "POST"])  # the methods that are allowed are GET and POST.
 def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have received your message".format(
+            request.form["name"]
+        ))
     return render_template("contact.html", page_title="Contact")
 
 
